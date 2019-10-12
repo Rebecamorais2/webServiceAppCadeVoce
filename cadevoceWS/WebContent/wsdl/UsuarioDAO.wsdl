@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://dao.cadevoce.com.br" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://dao.cadevoce.com.br" xmlns:intf="http://dao.cadevoce.com.br" xmlns:tns1="http://vo.cadevoce.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://dao.cadevoce.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://vo.cadevoce.com.br"/>
+   <element name="listarUsuarios">
+    <complexType/>
+   </element>
+   <element name="listarUsuariosResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="listarUsuariosReturn" type="tns1:UsuarioVO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="inserirUsuario">
+    <complexType>
+     <sequence>
+      <element name="usuario" type="tns1:UsuarioVO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="inserirUsuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="inserirUsuarioReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removerUsuario">
+    <complexType>
+     <sequence>
+      <element name="codUser" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removerUsuarioResponse">
+    <complexType/>
+   </element>
+   <element name="editarUsuario">
+    <complexType>
+     <sequence>
+      <element name="usuario" type="tns1:UsuarioVO"/>
+      <element name="codUser" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="editarUsuarioResponse">
+    <complexType/>
+   </element>
+   <element name="buscarUsuarioPorId">
+    <complexType>
+     <sequence>
+      <element name="codUser" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarUsuarioPorIdResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarUsuarioPorIdReturn" type="tns1:UsuarioVO"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://vo.cadevoce.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="UsuarioVO">
+    <sequence>
+     <element name="codigo" type="xsd:int"/>
+     <element name="confSenha" nillable="true" type="xsd:string"/>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="idFacebook" type="xsd:int"/>
+     <element name="idFotoPerfil" type="xsd:int"/>
+     <element name="idGoogle" type="xsd:int"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="senha" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="inserirUsuarioRequest">
+
+      <wsdl:part element="impl:inserirUsuario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarUsuarioPorIdRequest">
+
+      <wsdl:part element="impl:buscarUsuarioPorId" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="inserirUsuarioResponse">
+
+      <wsdl:part element="impl:inserirUsuarioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="editarUsuarioRequest">
+
+      <wsdl:part element="impl:editarUsuario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listarUsuariosRequest">
+
+      <wsdl:part element="impl:listarUsuarios" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="editarUsuarioResponse">
+
+      <wsdl:part element="impl:editarUsuarioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removerUsuarioRequest">
+
+      <wsdl:part element="impl:removerUsuario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listarUsuariosResponse">
+
+      <wsdl:part element="impl:listarUsuariosResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removerUsuarioResponse">
+
+      <wsdl:part element="impl:removerUsuarioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarUsuarioPorIdResponse">
+
+      <wsdl:part element="impl:buscarUsuarioPorIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="UsuarioDAO">
+
+      <wsdl:operation name="listarUsuarios">
+
+         <wsdl:input message="impl:listarUsuariosRequest" name="listarUsuariosRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listarUsuariosResponse" name="listarUsuariosResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="inserirUsuario">
+
+         <wsdl:input message="impl:inserirUsuarioRequest" name="inserirUsuarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:inserirUsuarioResponse" name="inserirUsuarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removerUsuario">
+
+         <wsdl:input message="impl:removerUsuarioRequest" name="removerUsuarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:removerUsuarioResponse" name="removerUsuarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="editarUsuario">
+
+         <wsdl:input message="impl:editarUsuarioRequest" name="editarUsuarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:editarUsuarioResponse" name="editarUsuarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarUsuarioPorId">
+
+         <wsdl:input message="impl:buscarUsuarioPorIdRequest" name="buscarUsuarioPorIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscarUsuarioPorIdResponse" name="buscarUsuarioPorIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="UsuarioDAOSoapBinding" type="impl:UsuarioDAO">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="listarUsuarios">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listarUsuariosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listarUsuariosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="inserirUsuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="inserirUsuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="inserirUsuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removerUsuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removerUsuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removerUsuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="editarUsuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="editarUsuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="editarUsuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarUsuarioPorId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarUsuarioPorIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarUsuarioPorIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UsuarioDAOService">
+
+      <wsdl:port binding="impl:UsuarioDAOSoapBinding" name="UsuarioDAO">
+
+         <wsdlsoap:address location="http://localhost:8080/cadevoceWS/services/UsuarioDAO"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

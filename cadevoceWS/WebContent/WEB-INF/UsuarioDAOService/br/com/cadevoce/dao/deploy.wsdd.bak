@@ -1,0 +1,49 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from UsuarioDAOService WSDL service -->
+
+  <service name="UsuarioDAO" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://dao.cadevoce.com.br"/>
+      <parameter name="wsdlServiceElement" value="UsuarioDAOService"/>
+      <parameter name="schemaQualified" value="http://dao.cadevoce.com.br,http://vo.cadevoce.com.br"/>
+      <parameter name="wsdlServicePort" value="UsuarioDAO"/>
+      <parameter name="className" value="br.com.cadevoce.dao.UsuarioDAOSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="UsuarioDAO"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="listarUsuarios" qname="operNS:listarUsuarios" xmlns:operNS="http://dao.cadevoce.com.br" returnQName="retNS:listarUsuariosReturn" xmlns:retNS="http://dao.cadevoce.com.br" returnType="rtns:UsuarioVO" xmlns:rtns="http://vo.cadevoce.com.br" soapAction="" >
+      </operation>
+      <operation name="inserirUsuario" qname="operNS:inserirUsuario" xmlns:operNS="http://dao.cadevoce.com.br" returnQName="retNS:inserirUsuarioReturn" xmlns:retNS="http://dao.cadevoce.com.br" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:usuario" xmlns:pns="http://dao.cadevoce.com.br" type="tns:UsuarioVO" xmlns:tns="http://vo.cadevoce.com.br"/>
+      </operation>
+      <operation name="removerUsuario" qname="operNS:removerUsuario" xmlns:operNS="http://dao.cadevoce.com.br" soapAction="" >
+        <parameter qname="pns:codUser" xmlns:pns="http://dao.cadevoce.com.br" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="editarUsuario" qname="operNS:editarUsuario" xmlns:operNS="http://dao.cadevoce.com.br" soapAction="" >
+        <parameter qname="pns:usuario" xmlns:pns="http://dao.cadevoce.com.br" type="tns:UsuarioVO" xmlns:tns="http://vo.cadevoce.com.br"/>
+        <parameter qname="pns:codUser" xmlns:pns="http://dao.cadevoce.com.br" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="buscarUsuarioPorId" qname="operNS:buscarUsuarioPorId" xmlns:operNS="http://dao.cadevoce.com.br" returnQName="retNS:buscarUsuarioPorIdReturn" xmlns:retNS="http://dao.cadevoce.com.br" returnType="rtns:UsuarioVO" xmlns:rtns="http://vo.cadevoce.com.br" soapAction="" >
+        <parameter qname="pns:codUser" xmlns:pns="http://dao.cadevoce.com.br" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="listarUsuarios buscarUsuarioPorId inserirUsuario removerUsuario editarUsuario"/>
+
+      <typeMapping
+        xmlns:ns="http://vo.cadevoce.com.br"
+        qname="ns:UsuarioVO"
+        type="java:br.com.cadevoce.vo.UsuarioVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
